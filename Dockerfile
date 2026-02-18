@@ -3,8 +3,9 @@ FROM registry.fedoraproject.org/fedora-minimal:42
 COPY dnf.conf /etc/dnf/dnf.conf
 
 RUN \
+    dnf5 in -y --nogpgcheck ultramarine-gpg-keys terra-gpg-keys &&\
     dnf5 up -y &&\
     dnf5 swap -y systemd-standalone-sysusers systemd &&\
-    dnf5 in -y ultramarine-mock-configs ultramarine-gpg-keys terra-gpg-keys subatomic-cli anda{,-srpm-macros} terra-appstream-helper mock-scm \
+    dnf5 in -y ultramarine-mock-configs subatomic-cli anda{,-srpm-macros} terra-appstream-helper mock-scm \
         gh wget less podman fuse-overlayfs dnf5-plugins script mold sudo sccache jq @buildsys-build &&\
     dnf5 clean packages dbcache
