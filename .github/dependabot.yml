@@ -4,3 +4,21 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+      
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    target-branch: "um44"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    target-branch: "um43"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    target-branch: "um42"
+    schedule:
+      interval: "weekly"
