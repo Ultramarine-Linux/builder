@@ -19,6 +19,6 @@ updates:
 
   - package-ecosystem: "github-actions"
     directory: "/"
-    target-branch: "um43"
+    target-branch: "um42"
     schedule:
       interval: "weekly"
