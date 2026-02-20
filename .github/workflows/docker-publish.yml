@@ -26,18 +26,6 @@ jobs:
         with:
           ref: ${{ 'um' || '' }}${{ matrix.branch }}
 
-      - name: Checkout Ultramarine packages
-        uses: actions/checkout@v3
-        with:
-          repository: Ultramarine-Linux/packages
-          fetch-depth: 0
-
-      - name: Checkout GPG keys
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-          path: gpg-keys
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
