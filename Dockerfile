@@ -1,6 +1,7 @@
 FROM registry.fedoraproject.org/fedora-minimal:rawhide
 
 COPY dnf.conf /etc/dnf/dnf.conf
+COPY gpg-keys/RPM-GPG-KEY* /etc/pki/rpm-gpg/
 
 RUN \
     sed -i 's/.fc%{fedora}/.umrawhide/g' /usr/lib/rpm/macros.d/macros.dist &&\
@@ -8,7 +9,6 @@ RUN \
     sed -iE '/^metadata_expire/d' /etc/yum.repos.d/fedora-rawhide.repo &&\
     cat /etc/yum.repos.d/fedora-rawhide.repo >> /etc/dnf/dnf.conf &&\
     cat /etc/dnf/dnf.conf &&\
-    dnf5 in -y --nogpgcheck https://repos.fyralabs.com/um$releasever/ultramarine-gpg-keys-0%3A$releasever-1.noarch.rpm https://repos.fyralabs.com/terra$releasever/terra-gpg-keys-0%3A$releasever-2.noarch.rpm &&\
     dnf5 up -y &&\
     dnf5 swap -y systemd-standalone-sysusers systemd &&\
     dnf5 in -y ultramarine-mock-configs subatomic-cli anda{,-srpm-macros} terra-appstream-helper mock-scm \
