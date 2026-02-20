@@ -8,7 +8,8 @@ RUN \
     sed -iE '/^metadata_expire/d' /etc/yum.repos.d/fedora-rawhide.repo &&\
     cat /etc/yum.repos.d/fedora-rawhide.repo >> /etc/dnf/dnf.conf &&\
     cat /etc/dnf/dnf.conf &&\
-    dnf5 in -y --nogpgcheck --repo=terra,ultramarine --setopt=terra.baseurl="https://repos.fyralabs.com/terra$releasever",ultramarine.baseurl="https://repos.fyralabs.com/um$releasever" terra-gpg-keys ultramarine-gpg-keys &&\
+    sed -i 's/#baseurl=/baseurl=/g'
+    dnf5 in -y --nogpgcheck --repo=terra,ultramarine --setopt=terra.baseurl='https://repos.fyralabs.com/terra$releasever',ultramarine.baseurl='https://repos.fyralabs.com/um$releasever' terra-gpg-keys ultramarine-gpg-keys &&\
     dnf5 up -y &&\
     dnf5 swap -y systemd-standalone-sysusers systemd &&\
     dnf5 in -y ultramarine-mock-configs subatomic-cli anda{,-srpm-macros} terra-appstream-helper mock-scm \
