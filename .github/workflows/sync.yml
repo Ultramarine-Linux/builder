@@ -27,7 +27,7 @@ jobs:
       - name: Backport Action
         uses: sorenlouv/backport-github-action@v10.2.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.RABONEKO_BACKPORT_GITHUB_TOKEN }}
           auto_backport_label_prefix: sync-
 
       - name: Info log
