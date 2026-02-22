@@ -14,3 +14,6 @@ RUN \
     dnf5 in -y ultramarine-mock-configs subatomic-cli anda{,-srpm-macros} terra-appstream-helper mock-scm \
         gh wget less podman fuse-overlayfs dnf5-plugins util-linux-script mold sudo terra-sccache jq @buildsys-build &&\
     dnf5 clean packages dbcache
+
+COPY /etc/pki/rpm-gpg/RPM-GPG-KEY-um* /etc/pki/mock
+COPY /etc/pki/rpm-gpg/RPM-GPG-KEY-terra* /etc/pki/mock
