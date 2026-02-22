@@ -3,7 +3,6 @@ FROM registry.fedoraproject.org/fedora-minimal:rawhide
 COPY dnf.conf /etc/dnf/dnf.conf
 
 RUN \
-    sed -i 's/.fc%{fedora}/.umrawhide/g' /usr/lib/rpm/macros.d/macros.dist &&\
     sed -i '/\[fedora\]\|\[updates\]/a enabled=0' /etc/dnf/dnf.conf &&\
     sed -iE '/^metadata_expire/d' /etc/yum.repos.d/fedora-rawhide.repo &&\
     cat /etc/yum.repos.d/fedora-rawhide.repo >> /etc/dnf/dnf.conf &&\
@@ -11,8 +10,9 @@ RUN \
     dnf5 in -y --nogpgcheck --repo=terra,ultramarine --setopt=terra.baseurl='https://repos.fyralabs.com/terra$releasever',ultramarine.baseurl='https://repos.fyralabs.com/um$releasever' terra-gpg-keys ultramarine-gpg-keys &&\
     dnf5 up -y &&\
     dnf5 swap -y systemd-standalone-sysusers systemd &&\
+    ddnf5 swap -y fedora-release-common ultramarine-release-common --allowerasing &&\
     dnf5 in -y ultramarine-mock-configs subatomic-cli anda{,-srpm-macros} terra-appstream-helper mock-scm \
-        gh wget less podman fuse-overlayfs dnf5-plugins util-linux-script mold sudo terra-sccache jq @buildsys-build &&\
+        gh wget less podman fuse-overlayfs dnf5-plugins script mold sudo terra-sccache jq @buildsys-build --exclude=fedora-release-common &&\
     dnf5 clean packages dbcache &&\
     cp -v /etc/pki/rpm-gpg/RPM-GPG-KEY-um* -t /etc/pki/mock &&\
     cp -v /etc/pki/rpm-gpg/RPM-GPG-KEY-terra* -t /etc/pki/mock
