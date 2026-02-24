@@ -3,7 +3,7 @@ FROM registry.fedoraproject.org/fedora-minimal:44
 COPY dnf.conf /etc/dnf/dnf.conf
 
 RUN \
-    dnf5 in -y --nogpgcheck --repo=terra,ultramarine --setopt=terra.baseurl='https://repos.fyralabs.com/terra$releasever',ultramarine.baseurl='https://repos.fyralabs.com/um$releasever' terra-gpg-keys ultramarine-gpg-keys &&\
+    dnf5 in -y --nogpgcheck --repo=terra,ultramarine terra-gpg-keys ultramarine-gpg-keys &&\
     dnf5 up -y &&\
     dnf5 swap -y systemd-standalone-sysusers systemd &&\
     dnf5 swap -y fedora-release-common ultramarine-release-common --allowerasing &&\
