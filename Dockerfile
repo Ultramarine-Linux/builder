@@ -16,4 +16,4 @@ RUN \
     dnf4 in -y ultramarine-mock-configs ultramarine-mock-gpg-keys terra-mock-gpg-keys subatomic-cli anda{,-srpm-macros} terra-appstream-helper mock-scm \
         gh wget less podman fuse-overlayfs dnf5-plugins dnf-plugins-core util-linux-script mold sudo terra-sccache jq @buildsys-build --exclude=fedora-release* &&\
     dnf5 clean packages dbcache &&\
-    dnf4 clean all &&
+    dnf4 clean all
