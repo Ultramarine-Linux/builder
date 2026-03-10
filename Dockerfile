@@ -13,9 +13,7 @@ RUN \
     dnf4 swap -y systemd-standalone-sysusers systemd &&\
     dnf4 swap -y fedora-release-common ultramarine-release-identity-container --allowerasing &&\
     dnf4 in -y python3-dnf &&\
-    dnf4 in -y ultramarine-mock-configs subatomic-cli anda{,-srpm-macros} terra-appstream-helper mock-scm \
+    dnf4 in -y ultramarine-mock-configs ultramarine-mock-gpg-keys terra-mock-gpg-keys subatomic-cli anda{,-srpm-macros} terra-appstream-helper mock-scm \
         gh wget less podman fuse-overlayfs dnf5-plugins dnf-plugins-core util-linux-script mold sudo terra-sccache jq @buildsys-build --exclude=fedora-release* &&\
     dnf5 clean packages dbcache &&\
-    dnf4 clean all &&\
-    cp -pv /etc/pki/rpm-gpg/RPM-GPG-KEY-um* -t /etc/pki/mock &&\
-    cp -pv /etc/pki/rpm-gpg/RPM-GPG-KEY-terra* -t /etc/pki/mock
+    dnf4 clean all &&
