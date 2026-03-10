@@ -7,8 +7,7 @@ RUN \
     sed -iE '/^metadata_expire/d' /etc/yum.repos.d/fedora-rawhide.repo &&\
     cat /etc/yum.repos.d/fedora-rawhide.repo >> /etc/dnf/dnf.conf &&\
     cat /etc/dnf/dnf.conf &&\
-    dnf5 in -y --nogpgcheck --repo=terra,ultramarine terra-gpg-keys ultramarine-gpg-keys &&\
-    dnf5 in -y dnf4 &&\
+    dnf5 in -y --nogpgcheck --repo=terra,ultramarine terra-gpg-keys ultramarine-gpg-keys dnf4 &&\
     dnf4 up -y &&\
     dnf4 swap -y systemd-standalone-sysusers systemd &&\
     dnf4 swap -y fedora-release-common ultramarine-release-identity-container --allowerasing &&\
