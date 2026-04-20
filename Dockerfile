@@ -7,12 +7,10 @@ RUN \
     sed -iE '/^metadata_expire/d' /etc/yum.repos.d/fedora-rawhide.repo &&\
     cat /etc/yum.repos.d/fedora-rawhide.repo >> /etc/dnf/dnf.conf &&\
     cat /etc/dnf/dnf.conf &&\
-    dnf5 in -y --repo=fedora python3-dnf &&\
-    dnf5 in -y --nogpgcheck --repo=terra,ultramarine terra-gpg-keys ultramarine-gpg-keys &&\
-    dnf4 up -y &&\
-    dnf4 swap -y systemd-standalone-sysusers systemd &&\
-    dnf4 swap -y fedora-release-common ultramarine-release-identity-container --allowerasing &&\
-    dnf4 in -y ultramarine-mock-configs ultramarine-mock-gpg-keys terra-mock-gpg-keys subatomic-cli anda{,-srpm-macros} terra-appstream-helper mock-scm \
+    dnf in -y --nogpgcheck --repo=terra,ultramarine terra-gpg-keys ultramarine-gpg-keys &&\
+    dnf up -y &&\
+    dnf swap -y systemd-standalone-sysusers systemd &&\
+    dnf swap -y fedora-release-common ultramarine-release-identity-container --allowerasing &&\
+    dnf in -y ultramarine-mock-configs ultramarine-mock-gpg-keys terra-mock-gpg-keys subatomic-cli anda{,-srpm-macros} terra-appstream-helper mock-scm \
         gh wget less podman fuse-overlayfs dnf5-plugins dnf-plugins-core util-linux-script mold sudo terra-sccache jq @buildsys-build --exclude=fedora-release* &&\
-    dnf5 clean packages dbcache &&\
-    dnf4 clean all
+    dnf5 clean packages dbcache
