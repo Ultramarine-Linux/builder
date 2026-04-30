@@ -1,10 +1,8 @@
-name: Test Pull Request
+name: Test Changes
 permissions:
   contents: read
 on:
-  workflow_dispatch:
   pull_request:
-    branches: ["umrawhide", "um44", "um43", "um42"]
 
 jobs:
   build:
@@ -12,8 +10,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-    strategy:
-      fail-fast: false
     steps:
       - name: Checkout branch
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2

@@ -6,6 +6,7 @@ on:
   schedule:
     - cron: "0 0/6 * * *"
   push:
+    branches: ["umrawhide", "um44", "um43", "um42"]
 
 env:
   REGISTRY: ghcr.io
