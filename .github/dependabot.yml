@@ -4,21 +4,33 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    groups:
+      actions:
+        patterns: ["*"]
       
   - package-ecosystem: "github-actions"
     directory: "/"
     target-branch: "um44"
     schedule:
       interval: "weekly"
+    groups:
+      actions:
+        patterns: ["*"]
 
   - package-ecosystem: "github-actions"
     directory: "/"
     target-branch: "um43"
     schedule:
       interval: "weekly"
-
+    groups:
+      actions:
+        patterns: ["*"]
+        
   - package-ecosystem: "github-actions"
     directory: "/"
     target-branch: "um42"
     schedule:
       interval: "weekly"
+    groups:
+      actions:
+        patterns: ["*"]
