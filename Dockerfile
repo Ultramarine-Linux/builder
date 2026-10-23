@@ -1,10 +1,10 @@
-FROM registry.fedoraproject.org/fedora-minimal:rawhide
+FROM registry.fedoraproject.org/fedora-minimal:45
 
 COPY dnf.conf /etc/dnf/dnf.conf
 
 RUN sed -i '/\[fedora\]\|\[updates\]/a enabled=0' /etc/dnf/dnf.conf && \
-    sed -iE '/^metadata_expire/d' /usr/share/dnf5/repos.d/fedora-rawhide.repo && \
-    cat /usr/share/dnf5/repos.d/fedora-rawhide.repo >> /etc/dnf/dnf.conf && \
+    sed -iE '/^metadata_expire/d' /usr/share/dnf5/repos.d/fedora-45.repo && \
+    cat /usr/share/dnf5/repos.d/fedora-45.repo >> /etc/dnf/dnf.conf && \
     cat /etc/dnf/dnf.conf && \
     dnf in -y --nogpgcheck --repo=terra,ultramarine terra-gpg-keys ultramarine-gpg-keys && \
     dnf up -y && \
