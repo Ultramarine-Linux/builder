@@ -3,9 +3,9 @@ FROM registry.fedoraproject.org/fedora-minimal:45
 COPY dnf.conf /etc/dnf/dnf.conf
 
 RUN sed -i '/\[fedora\]\|\[updates\]/a enabled=0' /etc/dnf/dnf.conf && \
-    sed -iE '/^metadata_expire/d' /usr/share/dnf5/repos.d/fedora-45.repo && \
-    cat /usr/share/dnf5/repos.d/fedora-45.repo >> /etc/dnf/dnf.conf && \
-    cat /etc/dnf/dnf.conf && \
+    for r in fedora fedora-updates; do \
+      sed '/^metadata_expire/d' /usr/share/dnf5/repos.d/$r.repo >> /etc/dnf/dnf.conf; \
+    done && \
     dnf in -y --nogpgcheck --repo=terra,ultramarine terra-gpg-keys ultramarine-gpg-keys && \
     dnf up -y && \
     dnf swap -y fedora-release-common ultramarine-release-identity-container --allowerasing --setopt=clean_requirements_on_remove=false && \
