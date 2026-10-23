@@ -2,11 +2,7 @@ FROM registry.fedoraproject.org/fedora-minimal:45
 
 COPY dnf.conf /etc/dnf/dnf.conf
 
-RUN sed -i '/\[fedora\]\|\[updates\]/a enabled=0' /etc/dnf/dnf.conf && \
-    for r in fedora fedora-updates; do \
-      sed '/^metadata_expire/d' /usr/share/dnf5/repos.d/$r.repo >> /etc/dnf/dnf.conf; \
-    done && \
-    dnf in -y --nogpgcheck --repo=terra,ultramarine terra-gpg-keys ultramarine-gpg-keys && \
+RUN dnf in -y --nogpgcheck --repo=terra,ultramarine terra-gpg-keys ultramarine-gpg-keys && \
     dnf up -y && \
     dnf swap -y fedora-release-common ultramarine-release-identity-container --allowerasing --setopt=clean_requirements_on_remove=false && \
     dnf swap -y systemd-standalone-sysusers systemd && \
