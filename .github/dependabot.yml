@@ -7,6 +7,15 @@ updates:
     groups:
       actions:
         patterns: ["*"]
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    target-branch: "um45"
+    schedule:
+      interval: "weekly"
+    groups:
+      actions:
+        patterns: ["*"]
       
   - package-ecosystem: "github-actions"
     directory: "/"
